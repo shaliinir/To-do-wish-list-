@@ -1,1 +1,49 @@
-# To-do-wish-list-
+# class ToDoList:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append({"task": task, "done": False})
+
+    def view_tasks(self):
+        for idx, task in enumerate(self.tasks, 1):
+            status = "✔" if task["done"] else "✘"
+            print(f"{idx}. {task['task']} [{status}]")
+
+    def update_task(self, index):
+        if 0 <= index < len(self.tasks):
+            self.tasks[index]["done"] = True
+        else:
+            print("Invalid task number")
+
+    def delete_task(self, index):
+        if 0 <= index < len(self.tasks):
+            self.tasks.pop(index)
+        else:
+            print("Invalid task number")
+
+
+if __name__ == "__main__":
+    todo = ToDoList()
+    
+    while True:
+        print("\n--- TO-DO LIST ---")
+        print("1. Add Task\n2. View Tasks\n3. Mark as Done\n4. Delete Task\n5. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            task = input("Enter task: ")
+            todo.add_task(task)
+        elif choice == "2":
+            todo.view_tasks()
+        elif choice == "3":
+            idx = int(input("Enter task number to mark done: ")) - 1
+            todo.update_task(idx)
+        elif choice == "4":
+            idx = int(input("Enter task number to delete: ")) - 1
+            todo.delete_task(idx)
+        elif choice == "5":
+            break
+        else:
+            print("Invalid choice")
+To-do-wish-list-
